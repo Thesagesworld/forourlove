@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOL – For Our Love</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header>
+      <div>
+        <h1>FOL 💕</h1>
+        <small>For Our Love</small>
+      </div>
+      <div class="header-actions">
+        <span id="supabase-status" class="create-status">Supabase: conectando…</span>
+        <button id="toggle-dark" type="button">🌙</button>
+      </div>
+    </header>
+
+    <section class="pair-box" id="menu-screen">
+      <h2>Bienvenida 💌</h2>
+      <p class="create-status">Configura tu perfil local y conecta el mismo <code>pairCode</code> en ambos dispositivos.</p>
+      <div class="composer composer-three">
+        <input id="menu-username" placeholder="Tu username" autocomplete="username" />
+        <select id="menu-avatar" aria-label="Avatar cute">
+          <option value="💖">💖</option>
+          <option value="🐻">🐻</option>
+          <option value="🐰">🐰</option>
+          <option value="🌸">🌸</option>
+          <option value="✨">✨</option>
+          <option value="🦋">🦋</option>
+        </select>
+        <input id="menu-pair-code" placeholder="pairCode" />
+      </div>
+      <div class="composer single-action">
+        <button id="enter-app" type="button" class="send">Entrar</button>
+      </div>
+    </section>
+
+    <div id="app-content" class="is-hidden-initial">
+      <section class="pair-box profile-box">
+        <div class="profile-pill">
+          <span id="current-avatar" class="avatar-badge" aria-hidden="true">💖</span>
+          <div>
+            <strong>Tu mood profile</strong>
+            <p id="current-user" class="create-status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pair-box" id="pair-box">
+        <h2>Conexión privada</h2>
+        <div class="composer">
+          <input id="pair-code" placeholder="Código de pareja (ej: maria-483920)" />
+          <button id="apply-pair" type="button" class="send">Conectar</button>
+          <button id="generate-pair" type="button">Generar código</button>
+        </div>
+        <p id="pair-info" class="create-status"></p>
+        <div class="pair-link-row">
+          <input id="pair-link" readonly />
+          <button id="copy-pair-link" type="button">Copiar enlace</button>
+        </div>
+      </section>
+
+      <button id="show-time" class="send" type="button">🎬 It's show time</button>
+
+      <section id="stickers" class="stickers"></section>
+      <button id="toggle-stickers" class="toggle-stickers" type="button">➕ Ver más moodcitos 💕</button>
+
+      <form id="mood-form" class="composer">
+        <input id="mini-message" maxlength="70" placeholder="Escribe un mini mensaje" required />
+        <button type="submit" class="send">Enviar</button>
+      </form>
+
+      <form id="create-sticker" class="composer">
+        <input type="file" id="new-sticker-img" accept="image/png,image/jpeg,image/jpg,image/webp" />
+        <div class="camera-row">
+          <button id="open-camera" type="button">📷 Hacer foto</button>
+          <button id="capture-photo" type="button">Tomar foto</button>
+        </div>
+        <video id="camera-preview" class="camera-preview is-hidden-initial" autoplay playsinline muted></video>
+        <input type="text" id="new-label" placeholder="Nombre del sticker" required />
+        <input type="text" id="new-mini" placeholder="Mini frase" />
+        <input type="text" id="sticker-text" maxlength="40" placeholder="Añade texto encima 💭" />
+        <button type="submit">Crear Sticker</button>
+      </form>
+      <p id="create-status" class="create-status" aria-live="polite"></p>
+
+      <section id="preview" class="preview">
+        <div class="stamp">✨ Selecciona un sticker para empezar</div>
+      </section>
+
+      <section id="widget-preview" class="widget-mode">
+        <div class="widget-title">Último mood</div>
+        <div class="widget-empty">Aún no hay moodcitos compartidos.</div>
+      </section>
+
+      <section id="history" class="history"></section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("SW registrado"))
+        .catch((err) => console.log(err));
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
