@@ -71,25 +71,8 @@ const quickMoods = [
 const baseStickerCatalog = quickMoods.map((mood) => ({
   label: mood.label,
   mini: mood.mini,
-  candidates:
-    mood.img === "Stickers/te-extraño.svg"
-      ? [
-          "Stickers/sharingourhearts.svg",
-          "Stickers/sharing-our-hearts.svg",
-          "Stickers/te-extraño.png",
-          "Stickers/te-extrano.svg",
-          mood.img
-        ]
-      : mood.img === "Stickers/siestita.svg"
-        ? [
-            mood.img,
-            "Stickers/siestita.png",
-            "Stickers/dormir-juntas.svg",
-            "Stickers/dormir-juntas.png",
-            "Stickers/dormir juntas.svg",
-            "Stickers/dormir juntas.png"
-          ]
-        : [mood.img, mood.img.replace(/\.svg$/, ".png")]
+  // Solo usamos rutas que existen en el deploy para evitar 404 en consola
+  candidates: [mood.img]
 }));
 
 function setCreateStatus(message) {
