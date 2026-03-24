@@ -58,23 +58,37 @@ const STORAGE_KEYS = {
   darkMode: "folDarkMode"
 };
 
+// Usa rutas con mayúscula para coincidir con la carpeta real en deploy (Linux es case-sensitive)
 const quickMoods = [
-  { img: "stickers/te-extrano.svg", label: "Modo te extraño", mini: "¿Abrazo virtual?" },
-  { img: "stickers/traviesa.svg", label: "Modo traviesa", mini: "Ven que tengo planes." },
-  { img: "stickers/siestita.svg", label: "Modo siestita", mini: "Dormimos pegaditas hoy." },
-  { img: "stickers/payasa.svg", label: "Modo payasa", mini: "Soy tu comediante." },
-  { img: "stickers/intensa.svg", label: "Modo intensa", mini: "100% enamorada." },
-  { img: "stickers/melosa.svg", label: "Modo melosa", mini: "Besitos x34." }
+  { img: "Stickers/te-extraño.svg", label: "Modo te extraño", mini: "¿Abrazo virtual?" },
+  { img: "Stickers/traviesa.svg", label: "Modo traviesa", mini: "Ven que tengo planes." },
+  { img: "Stickers/siestita.svg", label: "Modo siestita", mini: "Dormimos pegaditas hoy." },
+  { img: "Stickers/payasa.svg", label: "Modo payasa", mini: "Soy tu comediante." },
+  { img: "Stickers/intensa.svg", label: "Modo intensa", mini: "100% enamorada." },
+  { img: "Stickers/melosa.svg", label: "Modo melosa", mini: "Besitos x34." }
 ];
 
 const baseStickerCatalog = quickMoods.map((mood) => ({
   label: mood.label,
   mini: mood.mini,
   candidates:
-    mood.img === "stickers/te-extrano.svg"
-      ? ["stickers/sharingourhearts.svg", "stickers/sharing-our-hearts.svg", "stickers/te-extrano.png", mood.img]
-      : mood.img === "stickers/siestita.svg"
-        ? [mood.img, "stickers/siestita.png", "stickers/dormir-juntas.svg", "stickers/dormir-juntas.png", "stickers/dormir juntas.svg", "stickers/dormir juntas.png"]
+    mood.img === "Stickers/te-extraño.svg"
+      ? [
+          "Stickers/sharingourhearts.svg",
+          "Stickers/sharing-our-hearts.svg",
+          "Stickers/te-extraño.png",
+          "Stickers/te-extrano.svg",
+          mood.img
+        ]
+      : mood.img === "Stickers/siestita.svg"
+        ? [
+            mood.img,
+            "Stickers/siestita.png",
+            "Stickers/dormir-juntas.svg",
+            "Stickers/dormir-juntas.png",
+            "Stickers/dormir juntas.svg",
+            "Stickers/dormir juntas.png"
+          ]
         : [mood.img, mood.img.replace(/\.svg$/, ".png")]
 }));
 
