@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">forourlove</string>
+    <string name="title_activity_main">forourlove</string>
+    <string name="package_name">com.forourlove.app</string>
+    <string name="custom_url_scheme">com.forourlove.app</string>
+</resources>
