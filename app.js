@@ -180,6 +180,14 @@ async function buildDefaultStickerData() {
     const img = await resolveFirstExistingPath(item.candidates);
     if (img) resolved.push({ img, label: item.label, mini: item.mini });
   }
+  // Fallback para asegurar al menos un sticker disponible (evita que botones queden inertes)
+  if (!resolved.length) {
+    resolved.push({
+      img: "icons/icon-512.png",
+      label: "Show time",
+      mini: "Ready to shine ✨"
+    });
+  }
   return resolved;
 }
 
@@ -593,8 +601,13 @@ showTimeBtn?.addEventListener("click", async () => {
     return;
   }
 
-  const showTimeSticker = selectedSticker || stickerData[0];
-  if (!showTimeSticker) return;
+  const showTimeSticker =
+    selectedSticker ||
+    stickerData[0] || { img: "icons/icon-512.png", label: "Show time", mini: "Listo ✨" };
+  if (!showTimeSticker) {
+    setCreateStatus("No hay stickers cargados todavía.");
+    return;
+  }
 
   const payload = {
     pair_code: activePairCode,
