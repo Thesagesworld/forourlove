@@ -660,7 +660,10 @@ document.getElementById("create-sticker").addEventListener("submit", async (e) =
     const { error: uploadError } = await supabaseClient.storage
       .from(SUPABASE_STICKERS_BUCKET)
       .upload(filePath, uploadSource, { contentType: "image/png", upsert: false });
-    if (uploadError) throw uploadError;
+    if (uploadError) {
+      console.error("Supabase upload error:", uploadError);
+      throw uploadError;
+    }
 
     const { data: publicUrlData } = supabaseClient.storage
       .from(SUPABASE_STICKERS_BUCKET)
@@ -670,7 +673,10 @@ document.getElementById("create-sticker").addEventListener("submit", async (e) =
       .from("stickers")
       .insert([{ pair_code: activePairCode, img: publicUrlData.publicUrl, label, mini }])
       .select("id,pair_code,img,label,mini,created_at");
-    if (insertError) throw insertError;
+    if (insertError) {
+      console.error("Supabase insert sticker error:", insertError);
+      throw insertError;
+    }
 
     if (insertedRows?.[0]) {
       addStickerIfMissing({
@@ -689,8 +695,8 @@ document.getElementById("create-sticker").addEventListener("submit", async (e) =
     capturedPhotoDataUrl = "";
     stopCamera();
   } catch (error) {
-    console.error(error);
-    setCreateStatus("Error subiendo sticker");
+    console.error("Create sticker error:", error);
+    setCreateStatus(`Error subiendo sticker: ${error?.message || "revisa policies de Supabase"}`);
   }
 });
 
