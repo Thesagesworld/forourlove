@@ -371,5 +371,46 @@ body.dark .widget-mode {
 
 
 
+.is-hidden-initial { display: none; }
+#show-time { width: 100%; margin: 0.3rem 0 0.8rem; }
+
+.camera-row { display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; margin-bottom:0.5rem; }
+.camera-preview { width:100%; border-radius:12px; border:1px solid var(--border); margin-bottom:0.5rem; aspect-ratio: 4/3; object-fit: cover; background:#000; }
+
+
+.glitter-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.glitter {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: glitter-burst 900ms ease-out forwards;
+}
+
+#show-time.rainbow-pop {
+  animation: rainbow-pop 700ms ease-out;
+}
+
+@keyframes glitter-burst {
+  0% { transform: translate(0, 0) scale(0.3); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1.15); opacity: 0; }
+}
+
+@keyframes rainbow-pop {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0); }
+  40% { transform: scale(1.04); box-shadow: 0 0 22px rgba(255, 0, 170, 0.55); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0); }
+}
+
+
+
 
 
