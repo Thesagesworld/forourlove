@@ -676,9 +676,10 @@ showTimeBtn?.addEventListener("click", async () => {
 const biggBtn = document.getElementById("bigg-btn");
 
 biggBtn?.addEventListener("click", () => {
-  triggerRainbowGlitter(biggBtn);
+  triggerBigGExplosion(biggBtn);
+  playBigGPopSound();
   document.body.classList.add("rainbow");
-  setTimeout(() => document.body.classList.remove("rainbow"), 2000);
+  setTimeout(() => document.body.classList.remove("rainbow"), 1400);
   setCreateStatus("BigG activado 🌈✨");
 });
 
