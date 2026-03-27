@@ -1,5 +1,5 @@
-// ==============================
-// Configuración Supabase
+﻿// ==============================
+// ConfiguraciÃ³n Supabase
 // ==============================
 const SUPABASE_URL = "https://yttyrqzicnyukirctceh.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_JAMyGyLX96jN0801Ro-cXA_igjGBulo";
@@ -50,7 +50,7 @@ let renderedStickerKeys = new Set();
 let pendingNotificationTimeout = null;
 
 const VISIBLE_STICKERS = 4;
-const DEFAULT_AVATAR = "💖";
+const DEFAULT_AVATAR = "ðŸ’–";
 const STORAGE_KEYS = {
   username: "folUsername",
   avatar: "folAvatar",
@@ -58,9 +58,9 @@ const STORAGE_KEYS = {
   darkMode: "folDarkMode"
 };
 
-// Usa rutas con mayúscula para coincidir con la carpeta real en deploy (Linux es case-sensitive)
+// Usa rutas con mayÃºscula para coincidir con la carpeta real en deploy (Linux es case-sensitive)
 const quickMoods = [
-  { img: "Stickers/te-extraño.svg", label: "Modo te extraño", mini: "¿Abrazo virtual?" },
+  { img: "Stickers/te-extraÃ±o.svg", label: "Modo te extraÃ±o", mini: "Â¿Abrazo virtual?" },
   { img: "Stickers/traviesa.svg", label: "Modo traviesa", mini: "Ven que tengo planes." },
   { img: "Stickers/siestita.svg", label: "Modo siestita", mini: "Dormimos pegaditas hoy." },
   { img: "Stickers/payasa.svg", label: "Modo payasa", mini: "Soy tu comediante." },
@@ -134,7 +134,7 @@ function getPairCodeFromUrlOrStorage() {
 function updatePairLink() {
   const link = `${window.location.origin}${window.location.pathname}?pair=${encodeURIComponent(activePairCode)}`;
   pairLinkEl.value = link;
-  pairInfoEl.textContent = `Conectada al código: ${activePairCode}`;
+  pairInfoEl.textContent = `Conectada al cÃ³digo: ${activePairCode}`;
 }
 
 function getStickerKey(sticker) {
@@ -168,7 +168,7 @@ async function buildDefaultStickerData() {
     resolved.push({
       img: "icons/icon-512.png",
       label: "Show time",
-      mini: "Ready to shine ✨"
+      mini: "Ready to shine âœ¨"
     });
   }
   return resolved;
@@ -180,8 +180,8 @@ function updateStickerVisibility() {
   const hasOverflow = buttons.length > VISIBLE_STICKERS;
   toggleStickersBtn.disabled = !hasOverflow;
   toggleStickersBtn.textContent = hasOverflow
-    ? (stickersExpanded ? "➖ Ver menos moodcitos 💕" : "➕ Ver más moodcitos 💕")
-    : "➕ Moodcitos completos 💕";
+    ? (stickersExpanded ? "âž– Ver menos moodcitos ðŸ’•" : "âž• Ver mÃ¡s moodcitos ðŸ’•")
+    : "âž• Moodcitos completos ðŸ’•";
 }
 
 function renderStickerBtn(item) {
@@ -202,7 +202,7 @@ function renderStickerBtn(item) {
 function renderAllStickers() {
   stickersEl.innerHTML = "";
   stickerData.forEach(renderStickerBtn);
-  if (!stickerData.length) previewEl.innerHTML = `<div class="stamp">⚠️ No se encontraron stickers disponibles</div>`;
+  if (!stickerData.length) previewEl.innerHTML = `<div class="stamp">âš ï¸ No se encontraron stickers disponibles</div>`;
 }
 
 function addStickerIfMissing(sticker) {
@@ -227,11 +227,11 @@ function normalizeMoodRow(row) {
 
 function renderWidget(data) {
   if (!data) {
-    widgetEl.innerHTML = `<div class="widget-title">Último mood</div><div class="widget-empty">Aún no hay moodcitos compartidos.</div>`;
+    widgetEl.innerHTML = `<div class="widget-title">Ãšltimo mood</div><div class="widget-empty">AÃºn no hay moodcitos compartidos.</div>`;
     return;
   }
 
-  widgetEl.innerHTML = `<div class="widget-title">Último mood</div><img src="${data.img}" class="sticker-img-preview" alt="${data.label}"/><div><strong>${data.label}</strong></div><div class="history-sender">de ${data.sender || "alguien"}</div><div>${data.miniMessage}</div>`;
+  widgetEl.innerHTML = `<div class="widget-title">Ãšltimo mood</div><img src="${data.img}" class="sticker-img-preview" alt="${data.label}"/><div><strong>${data.label}</strong></div><div class="history-sender">de ${data.sender || "alguien"}</div><div>${data.miniMessage}</div>`;
 }
 
 function renderHistory(items) {
@@ -239,7 +239,7 @@ function renderHistory(items) {
   items.forEach((data) => {
     const div = document.createElement("div");
     div.className = "history-item";
-    div.innerHTML = `<img src="${data.img}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle" alt="${data.label}"/><div class="history-meta"><strong>${data.label}</strong><span>${data.miniMessage}</span><span class="history-sender">${data.sender || "Mood anónimo"}</span></div>`;
+    div.innerHTML = `<img src="${data.img}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle" alt="${data.label}"/><div class="history-meta"><strong>${data.label}</strong><span>${data.miniMessage}</span><span class="history-sender">${data.sender || "Mood anÃ³nimo"}</span></div>`;
     historyEl.appendChild(div);
   });
   renderWidget(items[0]);
@@ -264,12 +264,12 @@ function renderNewMood(row) {
 
   const div = document.createElement("div");
   div.className = "history-item";
-  div.innerHTML = `<img src="${data.img}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle" alt="${data.label}"/><div class="history-meta"><strong>${data.label}</strong><span>${data.miniMessage}</span><span class="history-sender">${data.sender || "Mood anónimo"}</span></div>`;
+  div.innerHTML = `<img src="${data.img}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle" alt="${data.label}"/><div class="history-meta"><strong>${data.label}</strong><span>${data.miniMessage}</span><span class="history-sender">${data.sender || "Mood anÃ³nimo"}</span></div>`;
   historyEl.prepend(div);
   renderWidget(data);
 
   if (data.sender && data.sender !== getCurrentUser()) {
-    showNotification(`💌 Te llegó un mood de ${data.sender}`);
+    showNotification(`ðŸ’Œ Te llegÃ³ un mood de ${data.sender}`);
   }
 }
 
@@ -288,10 +288,10 @@ async function loadMoodsFromSupabase() {
 
     renderedMoodIds = new Set((data || []).map((item) => item.id));
     renderHistory((data || []).map(normalizeMoodRow));
-    setSupabaseStatus("Supabase: conectado en tiempo real ✅");
+    setSupabaseStatus("Supabase: conectado en tiempo real âœ…");
   } catch (error) {
     console.error("Supabase load moods error:", error);
-    setSupabaseStatus("Supabase: error de conexión ❌");
+    setSupabaseStatus("Supabase: error de conexiÃ³n âŒ");
     setCreateStatus("No se pudieron cargar moods desde Supabase.");
   }
 }
@@ -311,8 +311,8 @@ function subscribeToRealtimeMoods() {
       }
     )
     .subscribe((status) => {
-      if (status === "SUBSCRIBED") setSupabaseStatus("Supabase: realtime activo 🟢");
-      if (status === "CHANNEL_ERROR") setSupabaseStatus("Supabase: error realtime 🔴");
+      if (status === "SUBSCRIBED") setSupabaseStatus("Supabase: realtime activo ðŸŸ¢");
+      if (status === "CHANNEL_ERROR") setSupabaseStatus("Supabase: error realtime ðŸ”´");
     });
 }
 
@@ -430,7 +430,7 @@ async function refreshForCurrentUser() {
     setCurrentUserMessage(`Usuario activo: ${getCurrentUserAvatar()} ${username}`);
   } else {
     setCurrentAvatar(DEFAULT_AVATAR);
-    setCurrentUserMessage("Sin sesión local. Elige un username para entrar.");
+    setCurrentUserMessage("Sin sesiÃ³n local. Elige un username para entrar.");
   }
 
   await reloadPairData();
@@ -460,12 +460,12 @@ async function handleEnterApp() {
   updatePairLink();
   openAppShell();
   await refreshForCurrentUser();
-  setCreateStatus(`Lista para moodcitos, ${avatar} ${username} 💕`);
+  setCreateStatus(`Lista para moodcitos, ${avatar} ${username} ðŸ’•`);
 }
 
 async function openCamera() {
   if (!navigator.mediaDevices?.getUserMedia) {
-    setCreateStatus("Tu navegador no soporta cámara en este modo.");
+    setCreateStatus("Tu navegador no soporta cÃ¡mara en este modo.");
     return;
   }
 
@@ -473,10 +473,10 @@ async function openCamera() {
     if (!cameraStream) cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
     cameraPreviewEl.srcObject = cameraStream;
     cameraPreviewEl.classList.remove("is-hidden-initial");
-    setCreateStatus("Cámara lista. Pulsa 'Tomar foto'.");
+    setCreateStatus("CÃ¡mara lista. Pulsa 'Tomar foto'.");
   } catch (error) {
     console.error(error);
-    setCreateStatus("No se pudo abrir la cámara.");
+    setCreateStatus("No se pudo abrir la cÃ¡mara.");
   }
 }
 
@@ -491,7 +491,7 @@ function stopCamera() {
 
 function capturePhotoAsJpg() {
   if (!cameraPreviewEl || !cameraPreviewEl.srcObject) {
-    setCreateStatus("Primero abre la cámara.");
+    setCreateStatus("Primero abre la cÃ¡mara.");
     return;
   }
 
@@ -535,11 +535,70 @@ function triggerRainbowGlitter(originEl) {
   }, 1000);
 }
 
+function triggerBigGExplosion(originEl) {
+  const layer = document.createElement("div");
+  layer.className = "glitter-layer";
+  document.body.appendChild(layer);
+  const colors = ["#ff006e", "#ffbe0b", "#06d6a0", "#118ab2", "#8338ec", "#f72585", "#3a86ff"];
+  const rect = originEl?.getBoundingClientRect();
+  const cx = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+  const cy = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+
+  for (let i = 0; i < 120; i += 1) {
+    const dot = document.createElement("span");
+    dot.className = "glitter";
+    dot.style.left = `${cx}px`;
+    dot.style.top = `${cy}px`;
+    dot.style.background = colors[i % colors.length];
+    const angle = (Math.PI * 2 * i) / 120;
+    const distance = 80 + Math.random() * 220;
+    dot.style.setProperty("--tx", `${Math.cos(angle) * distance}px`);
+    dot.style.setProperty("--ty", `${Math.sin(angle) * distance}px`);
+    dot.style.opacity = `${0.9 + Math.random() * 0.1}`;
+    dot.style.transform = `scale(${0.8 + Math.random() * 0.5})`;
+    layer.appendChild(dot);
+  }
+
+  originEl?.classList.add("bigg-pop");
+  setTimeout(() => {
+    originEl?.classList.remove("bigg-pop");
+    layer.remove();
+  }, 1200);
+}
+
+function playBigGPopSound() {
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = "triangle";
+    oscillator.frequency.setValueAtTime(350, audioCtx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.2);
+
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.02);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.26);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.26);
+
+    oscillator.onended = () => {
+      audioCtx.close();
+    };
+  } catch (error) {
+    console.warn("AudioContext no soportado o reproducir sonido falló", error);
+  }
+}
+
 function bindPairLinkActions() {
   applyPairBtn.addEventListener("click", () => {
     const next = normalizePairCode(pairCodeEl.value);
     if (!next) {
-      pairInfoEl.textContent = "Escribe un código de pareja válido.";
+      pairInfoEl.textContent = "Escribe un cÃ³digo de pareja vÃ¡lido.";
       return;
     }
 
@@ -561,15 +620,15 @@ function bindPairLinkActions() {
     activePairCode = generated;
     updatePairLink();
     void refreshForCurrentUser();
-    pairInfoEl.textContent = `Código generado: ${generated}`;
+    pairInfoEl.textContent = `CÃ³digo generado: ${generated}`;
   });
 
   copyPairLinkBtn.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(pairLinkEl.value);
-      pairInfoEl.textContent = `Enlace copiado para ${activePairCode} 💌`;
+      pairInfoEl.textContent = `Enlace copiado para ${activePairCode} ðŸ’Œ`;
     } catch {
-      pairInfoEl.textContent = "No se pudo copiar automáticamente.";
+      pairInfoEl.textContent = "No se pudo copiar automÃ¡ticamente.";
     }
   });
 }
@@ -586,9 +645,9 @@ showTimeBtn?.addEventListener("click", async () => {
 
   const showTimeSticker =
     selectedSticker ||
-    stickerData[0] || { img: "icons/icon-512.png", label: "Show time", mini: "Listo ✨" };
+    stickerData[0] || { img: "icons/icon-512.png", label: "Show time", mini: "Listo âœ¨" };
   if (!showTimeSticker) {
-    setCreateStatus("No hay stickers cargados todavía.");
+    setCreateStatus("No hay stickers cargados todavÃ­a.");
     return;
   }
 
@@ -596,22 +655,31 @@ showTimeBtn?.addEventListener("click", async () => {
     pair_code: activePairCode,
     sender: username,
     img: showTimeSticker.img,
-    label: "It's show time ✨",
-    mini_message: "Rupaul time 💅"
+    label: "It's show time âœ¨",
+    mini_message: "Rupaul time ðŸ’…"
   };
 
   try {
-    setCreateStatus("Enviando mood show time... ✨");
+    setCreateStatus("Enviando mood show time... âœ¨");
     const { error } = await supabaseClient.from("moods").insert([payload]);
     if (error) throw error;
     document.body.classList.add("rainbow");
     triggerRainbowGlitter(showTimeBtn);
     setTimeout(() => document.body.classList.remove("rainbow"), 2000);
-    setCreateStatus("Mood enviado: It's show time 💅🌈✨");
+    setCreateStatus("Mood enviado: It's show time ðŸ’…ðŸŒˆâœ¨");
   } catch (error) {
     console.error(error);
     setCreateStatus("No se pudo enviar mood show time.");
   }
+});
+
+const biggBtn = document.getElementById("bigg-btn");
+
+biggBtn?.addEventListener("click", () => {
+  triggerRainbowGlitter(biggBtn);
+  document.body.classList.add("rainbow");
+  setTimeout(() => document.body.classList.remove("rainbow"), 2000);
+  setCreateStatus("BigG activado 🌈✨");
 });
 
 toggleStickersBtn.addEventListener("click", () => {
@@ -647,7 +715,7 @@ document.getElementById("create-sticker").addEventListener("submit", async (e) =
   }
 
   try {
-    setCreateStatus("Subiendo sticker... 💭");
+    setCreateStatus("Subiendo sticker... ðŸ’­");
     const rawSource = file || capturedPhotoDataUrl;
     const uploadSource = await createStickerWithText(rawSource, stickerText);
     const fileName = `${activePairCode}-${Date.now()}-${Math.random().toString(36).slice(2)}.png`;
@@ -683,7 +751,7 @@ document.getElementById("create-sticker").addEventListener("submit", async (e) =
       });
     }
 
-    setCreateStatus("Sticker compartido 💕");
+    setCreateStatus("Sticker compartido ðŸ’•");
     document.getElementById("new-sticker-img").value = "";
     document.getElementById("new-label").value = "";
     document.getElementById("new-mini").value = "";
@@ -721,11 +789,11 @@ formEl.addEventListener("submit", async (e) => {
   };
 
   try {
-    setCreateStatus("Enviando mood... 💌");
+    setCreateStatus("Enviando mood... ðŸ’Œ");
     const { error } = await supabaseClient.from("moods").insert([payload]);
     if (error) throw error;
     messageEl.value = "";
-    setCreateStatus("Mood enviado ✅");
+    setCreateStatus("Mood enviado âœ…");
   } catch (error) {
     console.error(error);
     setCreateStatus("No se pudo enviar mood a Supabase.");
@@ -767,12 +835,13 @@ document.getElementById("toggle-dark").addEventListener("click", () => {
     setCurrentUserMessage(`Usuario activo: ${getCurrentUserAvatar()} ${user}`);
   } else {
     setCurrentAvatar(DEFAULT_AVATAR);
-    setCurrentUserMessage("Sin sesión local. Elige un username para entrar.");
+    setCurrentUserMessage("Sin sesiÃ³n local. Elige un username para entrar.");
   }
 
   renderWidget();
   setCreateStatus(`Supabase activo para ${activePairCode}. Compatible con Vercel y Capacitor.`);
 })();
+
 
 
 
